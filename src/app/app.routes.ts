@@ -4,7 +4,7 @@ import { HomeComponent } from './home/home.component';
 
 export const routes: Routes = [
   {
-    path: 'login',
+    path: '',
     component: LoginComponent,
     title: 'Login page',
   },
