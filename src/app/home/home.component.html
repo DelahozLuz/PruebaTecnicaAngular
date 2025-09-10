@@ -1,0 +1,88 @@
+<div class="home-wrap">
+  <div class="row item-row">
+    <div class="col-10">
+      <h2 class="item-title">Nombres</h2>
+      <p>{{ customerResult?.FirstName }}</p>
+    </div>
+    <div class="col-2">
+      <button class="btn-edit" (click)="openEdit('FirstName')">Editar</button> 
+    </div>
+  </div>
+
+  <div class="row item-row">
+    <div class="col-10">
+      <h2 class="item-title">Apellidos</h2>
+      <p>{{ customerResult?.LastName }}</p>
+    </div>
+    <div class="col-2">
+      <button class="btn-edit" (click)="openEdit('LastName')">Editar</button> 
+    </div>
+  </div>
+
+  <div class="row item-row">
+    <div class="col-10">
+      <h2 class="item-title">Email</h2>
+      <p>{{ customerResult?.EMail }}</p>
+    </div>
+    <div class="col-2">
+      <button class="btn-edit" (click)="openEdit('EMail')">Editar</button> 
+    </div>
+  </div>
+
+  <div class="row item-row">
+    <div class="col-10">
+      <h2 class="item-title">Documento</h2>
+      <p>{{ customerResult?.PersonalId }}</p>
+    </div>
+    <div class="col-2">
+      <button class="btn-edit" (click)="openEdit('PersonalId')">Editar</button> 
+    </div>
+  </div>
+
+  <div class="row item-row">
+    <div class="col-10">
+      <h2 class="item-title">Teléfono</h2>
+      <p>{{ customerResult?.TelNumber1 }}</p>
+    </div>
+    <div class="col-2">
+      <button class="btn-edit" (click)="openEdit('TelNumber1')">Editar</button> 
+    </div>
+  </div>
+</div>
+
+
+<div class="overlay" *ngIf="editOpen"> 
+  <div class="modal-card">
+    <h3 class="modal-title"
+        [ngStyle]="{ color: (editForm.get('value')?.value || '').trim() ? '#00000073' : '#EB5757' }"> 
+      {{ fieldLabel }}
+    </h3>
+
+    <form [formGroup]="editForm" (ngSubmit)="submitEdit()"> 
+      <input class="modal-input" type="text" formControlName="value" />      
+
+      <button class="btn-submit" type="submit" [disabled]="!canSubmit">Guardar cambios</button> 
+      <button type="button" class="btn-cancel" (click)="closeEdit()">Cancelar</button>
+    </form>
+  </div>
+</div>
+
+
+<div class="popup-overlay" *ngIf="showConfirm">
+  <div class="popup-card">
+    <div class="popup-icon">ℹ</div>
+    <div class="popup-text">¿Seguro que deseas actualizar?</div>
+    <div class="popup-actions">
+      <button class="popup-yes" (click)="confirmUpdate()">Confirmar</button> 
+      <button class="popup-no" (click)="cancelUpdate()">Cancelar</button>    
+    </div>
+  </div>
+</div>
+
+
+<div class="popup-overlay" *ngIf="showSuccess"> 
+  <div class="popup-card">
+    <div class="popup-icon">✓</div>
+    <div class="popup-text">Información actualizada</div>
+  </div>
+</div>
